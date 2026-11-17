@@ -1,0 +1,16 @@
+﻿Requirement,Use cases,Requirement text,Data,Server or flow,Screen,Role,Acceptance
+BR01,UC01–UC03,إنشاء المهام والتكليف الذاتي والطارئ,"ist_workitem: ist_taskkind, ist_requesterlevel, ist_requestedby, ist_executionowner",TaskPolicy,مهامي / إضافة مهمة,موظف ومدير,تحقق المالك والسبب والمواعيد
+BR02,UC07–UC12,مسار اعتماد قابل للترتيب والتوقف,"ist_workitem: ist_approvalpath, ist_reviewposition, ist_approvalstatus",ist_TaskReview,طلبات الاعتماد,المعتمد الحالي,منع تجاوز المرحلة وحفظ الملاحظات
+BR03,UC02,تكليف مدير لأي موظف مخول,"ist_workitem: ist_executionowner, ist_team",TaskPolicy,إضافة مهمة,مدير,اختبار حسابين مستقلين مطلوب
+BR04,UC04,توثيق المشاركين من أقسام مختلفة,ist_workitem: ist_contributors,TaskPolicy,منتقي المشاركين,مستخدم مخول,الاسم لا يمنح الوصول
+BR05,UC05,نسبة إنجاز وتاريخ آخر تحديث,ist_workitem / ist_workupdate,TaskPolicy / TaskImpact,تحديث المهمة ولوحة المتابعة,المسؤول عن التنفيذ,تحديث ثم إعادة الفتح
+BR06,UC20–UC21,إدارة المستخدمين وتعدد المسؤولين وحذف قابل للاستعادة,ist_appuser / ist_useraccessevent,ist_ManageUserAccess / UserDirectoryGuard,المستخدمون والصلاحيات وفحص الحساب,مسؤول استدامة,12 اختبار حذف + 7 حالات جاهزية؛ قبول المستخدمين المستقلين مطلوب
+BR07,UC06,تسليم الإجازة,"ist_workitem: ist_backupowner, ist_delegatefrom, ist_delegateto, ist_handoverbrief, ist_handovernext",TaskPolicy,تسليم الإجازة,المسؤول والمفوض المخول,اختبار قدرة المفوض على الوصول منفصل
+BR08,"UC03,UC22",الخطة السنوية والإصدارات والطارئ,ist_annualplan / ist_planversion / ist_planitem / ist_changerequest,Governance,الخطة السنوية,مدير الإدارة,Baseline مجمد وتغيير معتمد
+BR09,UC13–UC14,اقتراح المبادرة والتوجيه والتعثر,ist_initiative / ist_initiativeguidance,ist_ApproveInitiative / InitiativeStageGuard,المبادرات / BPF,العضو والمتابع,رفض اعتماد العضو وإلزام بيانات التعثر
+BR10,UC15,الأثر على مؤشرات الفرق,ist_impactlink / ist_indicator / ist_indicatorreading,Governance,الأثر والمخاطر,الأقسام حسب الدور,كتالوج عام وقراءات داخل الوحدة
+BR11,UC16,معالجة المخاطر,ist_riskresponse / ist_risk / ist_riskassessment,Governance,الأثر والمخاطر,المسؤول عن المعالجة,تحديد الخطر ونوع المعالجة والدرجة
+BR12,UC17,التكرار دون ازدواج,ist_recurringtemplate / ist_recurrenceinstance,S01 / ist_GenerateCycle,قوالب التكرار,مسؤول القالب,مفتاح دورة فريد وإعادة المحاولة
+BR13,UC18–UC19,النسخ والإغلاق والمخرجات,ist_deliverable / ist_documentversion,ist_ApproveDocumentVersion / Closure guards,النسخ وطلب الاعتماد,المنتج والمعتمد,نسخة معتمدة واحدة ومنع الإغلاق دونها
+BR14,UC18,التسليم بين الفرق,ist_handover / ist_handoverevent,S02 / ist_SendHandover / ist_RejectHandover,مراجعة التسليم,الفريق المعتمد,اعتماد ورفض وإعادة نسخة؛ اختبار العزل بفرق مستقلة مطلوب
+BR15,UC22,النقل والتشغيل والنسخ المستقل,Solution / metadata / web resources / plug-ins,prepare_work_copy.py,دليل البناء 98 صفحة,مسؤول المنصة,التراخيص وإعادة الاتصالات وUAT في الهدف

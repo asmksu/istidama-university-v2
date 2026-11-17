@@ -1,0 +1,329 @@
+erDiagram
+ ist_department {
+  guid ist_departmentid PK
+  guid ist_businessunit FK
+ }
+ ist_team {
+  guid ist_teamid PK
+  guid ist_department FK
+  guid ist_ownerteam FK
+  guid ist_planningapprover FK
+  guid ist_monitoringapprover FK
+  guid ist_sectionapprover FK
+  guid ist_departmentapprover FK
+  guid ist_generalapprover FK
+ }
+ ist_process {
+  guid ist_processid PK
+ }
+ ist_holiday {
+  guid ist_holidayid PK
+ }
+ ist_setting {
+  guid ist_settingid PK
+ }
+ ist_annualplan {
+  guid ist_annualplanid PK
+  guid ist_department FK
+ }
+ ist_planversion {
+  guid ist_planversionid PK
+  guid ist_annualplan FK
+  guid ist_approver FK
+ }
+ ist_planitem {
+  guid ist_planitemid PK
+  guid ist_planversion FK
+  guid ist_parentplanitem FK
+  guid ist_team FK
+  guid ist_process FK
+  guid ist_planningowner FK
+  guid ist_executionowner FK
+ }
+ ist_initiative {
+  guid ist_initiativeid PK
+  guid ist_proposer FK
+  guid ist_department FK
+  guid ist_team FK
+  guid ist_followupowner FK
+  guid ist_actionowner FK
+  guid ist_planitem FK
+ }
+ ist_initiativeguidance {
+  guid ist_initiativeguidanceid PK
+  guid ist_initiative FK
+  guid ist_author FK
+ }
+ ist_workitem {
+  guid ist_workitemid PK
+  guid ist_department FK
+  guid ist_team FK
+  guid ist_process FK
+  guid ist_planitem FK
+  guid ist_initiative FK
+  guid ist_planningowner FK
+  guid ist_executionowner FK
+  guid ist_backupowner FK
+  guid ist_partnerdepartment FK
+  guid ist_planningapprover FK
+  guid ist_monitoringapprover FK
+  guid ist_requestedby FK
+  guid ist_indicator FK
+  guid ist_sectionapprover FK
+  guid ist_departmentapprover FK
+  guid ist_generalapprover FK
+ }
+ ist_workupdate {
+  guid ist_workupdateid PK
+  guid ist_workitem FK
+  guid ist_author FK
+ }
+ ist_recurringtemplate {
+  guid ist_recurringtemplateid PK
+  guid ist_planitem FK
+  guid ist_producerteam FK
+  guid ist_approverteam FK
+  guid ist_approver FK
+  guid ist_planningowner FK
+  guid ist_executionowner FK
+ }
+ ist_recurrenceinstance {
+  guid ist_recurrenceinstanceid PK
+  guid ist_template FK
+  guid ist_workitem FK
+ }
+ ist_objective {
+  guid ist_objectiveid PK
+  guid ist_team FK
+ }
+ ist_indicator {
+  guid ist_indicatorid PK
+  guid ist_team FK
+ }
+ ist_indicatorreading {
+  guid ist_indicatorreadingid PK
+  guid ist_indicator FK
+  guid ist_reader FK
+ }
+ ist_risk {
+  guid ist_riskid PK
+  guid ist_team FK
+ }
+ ist_riskassessment {
+  guid ist_riskassessmentid PK
+  guid ist_risk FK
+  guid ist_assessor FK
+ }
+ ist_impactlink {
+  guid ist_impactlinkid PK
+  guid ist_initiative FK
+  guid ist_planitem FK
+  guid ist_workitem FK
+  guid ist_indicator FK
+  guid ist_indicatorteam FK
+ }
+ ist_riskresponse {
+  guid ist_riskresponseid PK
+  guid ist_initiative FK
+  guid ist_planitem FK
+  guid ist_workitem FK
+  guid ist_risk FK
+  guid ist_responsible FK
+ }
+ ist_deliverable {
+  guid ist_deliverableid PK
+  guid ist_planitem FK
+  guid ist_initiative FK
+  guid ist_workitem FK
+  guid ist_producerteam FK
+  guid ist_approverteam FK
+  guid ist_approvedversion FK
+ }
+ ist_documentversion {
+  guid ist_documentversionid PK
+  guid ist_deliverable FK
+  guid ist_uploader FK
+ }
+ ist_handover {
+  guid ist_handoverid PK
+  guid ist_deliverable FK
+  guid ist_workitem FK
+  guid ist_template FK
+  guid ist_producerteam FK
+  guid ist_approverteam FK
+  guid ist_assignedapprover FK
+  guid ist_submittedversion FK
+ }
+ ist_handoverevent {
+  guid ist_handovereventid PK
+  guid ist_handover FK
+  guid ist_version FK
+  guid ist_actor FK
+ }
+ ist_request {
+  guid ist_requestid PK
+  guid ist_workitem FK
+ }
+ ist_requestevent {
+  guid ist_requesteventid PK
+  guid ist_request FK
+  guid ist_author FK
+ }
+ ist_dependency {
+  guid ist_dependencyid PK
+  guid ist_workitem FK
+ }
+ ist_decision {
+  guid ist_decisionid PK
+  guid ist_workitem FK
+  guid ist_approver FK
+ }
+ ist_document {
+  guid ist_documentid PK
+  guid ist_team FK
+  guid ist_substitute FK
+ }
+ ist_changerequest {
+  guid ist_changerequestid PK
+  guid ist_workitem FK
+  guid ist_annualplan FK
+  guid ist_requestor FK
+  guid ist_approver FK
+ }
+ ist_importlog {
+  guid ist_importlogid PK
+  guid ist_importedby FK
+ }
+ ist_importrow {
+  guid ist_importrowid PK
+  guid ist_importlog FK
+  guid ist_workitem FK
+ }
+ ist_kpisnapshot {
+  guid ist_kpisnapshotid PK
+  guid ist_department FK
+ }
+ ist_automationjob {
+  guid ist_automationjobid PK
+ }
+ ist_appuser {
+  guid ist_appuserid PK
+  guid ist_team FK
+  guid ist_systemuser FK
+  guid ist_managedteam FK
+ }
+ ist_useraccessevent {
+  guid ist_useraccesseventid PK
+  guid ist_appuser FK
+  guid ist_actor FK
+ }
+ businessunit ||--o{ ist_department : "ist_businessunit"
+ ist_department ||--o{ ist_team : "ist_department"
+ team ||--o{ ist_team : "ist_ownerteam"
+ systemuser ||--o{ ist_team : "ist_planningapprover"
+ systemuser ||--o{ ist_team : "ist_monitoringapprover"
+ systemuser ||--o{ ist_team : "ist_sectionapprover"
+ systemuser ||--o{ ist_team : "ist_departmentapprover"
+ systemuser ||--o{ ist_team : "ist_generalapprover"
+ ist_department ||--o{ ist_annualplan : "ist_department"
+ ist_annualplan ||--o{ ist_planversion : "ist_annualplan"
+ systemuser ||--o{ ist_planversion : "ist_approver"
+ ist_planversion ||--o{ ist_planitem : "ist_planversion"
+ ist_planitem ||--o{ ist_planitem : "ist_parentplanitem"
+ ist_team ||--o{ ist_planitem : "ist_team"
+ ist_process ||--o{ ist_planitem : "ist_process"
+ systemuser ||--o{ ist_planitem : "ist_planningowner"
+ systemuser ||--o{ ist_planitem : "ist_executionowner"
+ systemuser ||--o{ ist_initiative : "ist_proposer"
+ ist_department ||--o{ ist_initiative : "ist_department"
+ ist_team ||--o{ ist_initiative : "ist_team"
+ systemuser ||--o{ ist_initiative : "ist_followupowner"
+ systemuser ||--o{ ist_initiative : "ist_actionowner"
+ ist_planitem ||--o{ ist_initiative : "ist_planitem"
+ ist_initiative ||--o{ ist_initiativeguidance : "ist_initiative"
+ systemuser ||--o{ ist_initiativeguidance : "ist_author"
+ ist_department ||--o{ ist_workitem : "ist_department"
+ ist_team ||--o{ ist_workitem : "ist_team"
+ ist_process ||--o{ ist_workitem : "ist_process"
+ ist_planitem ||--o{ ist_workitem : "ist_planitem"
+ ist_initiative ||--o{ ist_workitem : "ist_initiative"
+ systemuser ||--o{ ist_workitem : "ist_planningowner"
+ systemuser ||--o{ ist_workitem : "ist_executionowner"
+ systemuser ||--o{ ist_workitem : "ist_backupowner"
+ ist_department ||--o{ ist_workitem : "ist_partnerdepartment"
+ systemuser ||--o{ ist_workitem : "ist_planningapprover"
+ systemuser ||--o{ ist_workitem : "ist_monitoringapprover"
+ systemuser ||--o{ ist_workitem : "ist_requestedby"
+ ist_indicator ||--o{ ist_workitem : "ist_indicator"
+ systemuser ||--o{ ist_workitem : "ist_sectionapprover"
+ systemuser ||--o{ ist_workitem : "ist_departmentapprover"
+ systemuser ||--o{ ist_workitem : "ist_generalapprover"
+ ist_workitem ||--o{ ist_workupdate : "ist_workitem"
+ systemuser ||--o{ ist_workupdate : "ist_author"
+ ist_planitem ||--o{ ist_recurringtemplate : "ist_planitem"
+ ist_team ||--o{ ist_recurringtemplate : "ist_producerteam"
+ ist_team ||--o{ ist_recurringtemplate : "ist_approverteam"
+ systemuser ||--o{ ist_recurringtemplate : "ist_approver"
+ systemuser ||--o{ ist_recurringtemplate : "ist_planningowner"
+ systemuser ||--o{ ist_recurringtemplate : "ist_executionowner"
+ ist_recurringtemplate ||--o{ ist_recurrenceinstance : "ist_template"
+ ist_workitem ||--o{ ist_recurrenceinstance : "ist_workitem"
+ ist_team ||--o{ ist_objective : "ist_team"
+ ist_team ||--o{ ist_indicator : "ist_team"
+ ist_indicator ||--o{ ist_indicatorreading : "ist_indicator"
+ systemuser ||--o{ ist_indicatorreading : "ist_reader"
+ ist_team ||--o{ ist_risk : "ist_team"
+ ist_risk ||--o{ ist_riskassessment : "ist_risk"
+ systemuser ||--o{ ist_riskassessment : "ist_assessor"
+ ist_initiative ||--o{ ist_impactlink : "ist_initiative"
+ ist_planitem ||--o{ ist_impactlink : "ist_planitem"
+ ist_workitem ||--o{ ist_impactlink : "ist_workitem"
+ ist_indicator ||--o{ ist_impactlink : "ist_indicator"
+ ist_team ||--o{ ist_impactlink : "ist_indicatorteam"
+ ist_initiative ||--o{ ist_riskresponse : "ist_initiative"
+ ist_planitem ||--o{ ist_riskresponse : "ist_planitem"
+ ist_workitem ||--o{ ist_riskresponse : "ist_workitem"
+ ist_risk ||--o{ ist_riskresponse : "ist_risk"
+ systemuser ||--o{ ist_riskresponse : "ist_responsible"
+ ist_planitem ||--o{ ist_deliverable : "ist_planitem"
+ ist_initiative ||--o{ ist_deliverable : "ist_initiative"
+ ist_workitem ||--o{ ist_deliverable : "ist_workitem"
+ ist_team ||--o{ ist_deliverable : "ist_producerteam"
+ ist_team ||--o{ ist_deliverable : "ist_approverteam"
+ ist_documentversion ||--o{ ist_deliverable : "ist_approvedversion"
+ ist_deliverable ||--o{ ist_documentversion : "ist_deliverable"
+ systemuser ||--o{ ist_documentversion : "ist_uploader"
+ ist_deliverable ||--o{ ist_handover : "ist_deliverable"
+ ist_workitem ||--o{ ist_handover : "ist_workitem"
+ ist_recurringtemplate ||--o{ ist_handover : "ist_template"
+ ist_team ||--o{ ist_handover : "ist_producerteam"
+ ist_team ||--o{ ist_handover : "ist_approverteam"
+ systemuser ||--o{ ist_handover : "ist_assignedapprover"
+ ist_documentversion ||--o{ ist_handover : "ist_submittedversion"
+ ist_handover ||--o{ ist_handoverevent : "ist_handover"
+ ist_documentversion ||--o{ ist_handoverevent : "ist_version"
+ systemuser ||--o{ ist_handoverevent : "ist_actor"
+ ist_workitem ||--o{ ist_request : "ist_workitem"
+ ist_request ||--o{ ist_requestevent : "ist_request"
+ systemuser ||--o{ ist_requestevent : "ist_author"
+ ist_workitem ||--o{ ist_dependency : "ist_workitem"
+ ist_workitem ||--o{ ist_decision : "ist_workitem"
+ systemuser ||--o{ ist_decision : "ist_approver"
+ ist_team ||--o{ ist_document : "ist_team"
+ systemuser ||--o{ ist_document : "ist_substitute"
+ ist_workitem ||--o{ ist_changerequest : "ist_workitem"
+ ist_annualplan ||--o{ ist_changerequest : "ist_annualplan"
+ systemuser ||--o{ ist_changerequest : "ist_requestor"
+ systemuser ||--o{ ist_changerequest : "ist_approver"
+ systemuser ||--o{ ist_importlog : "ist_importedby"
+ ist_importlog ||--o{ ist_importrow : "ist_importlog"
+ ist_workitem ||--o{ ist_importrow : "ist_workitem"
+ ist_department ||--o{ ist_kpisnapshot : "ist_department"
+ ist_team ||--o{ ist_appuser : "ist_team"
+ systemuser ||--o{ ist_appuser : "ist_systemuser"
+ team ||--o{ ist_appuser : "ist_managedteam"
+ ist_appuser ||--o{ ist_useraccessevent : "ist_appuser"
+ systemuser ||--o{ ist_useraccessevent : "ist_actor"
+ ist_workitem }o--o{ ist_objective : "native_association"
+ ist_workitem }o--o{ ist_document : "native_association"
+ ist_workitem }o--o{ ist_importlog : "native_association"
